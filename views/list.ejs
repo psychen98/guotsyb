@@ -1,0 +1,132 @@
+<%-include("./header.ejs")%>
+<!-- 当前位置 -->
+<div class="gonggao bdb_d fix">
+    <div class="txtScroll-top l fix zy_cur">
+        <div class="l tit"><img src="images/icon_location.png"><b class="dib vm">当前位置：</b></div>
+        <p class="l"><a href="/">首页</a><a
+                href="list?lv1=<%- lv1 %>&lv2=0"><%- navList[lv1] %></a><span><%- list[lv1][lv2] %></span></p>
+    </div>
+
+    <!-- 时间 -->
+    <div class="timebox fc r">
+        <script type="text/javascript" src="js/show_date.js"></script>
+    </div>
+</div>
+
+<!-- 子页内容框 -->
+<div class="zy_contentbox">
+    <!-- zy_content -->
+    <div class="zy_content fix">
+        <!-- 左边栏 -->
+        <div class="zy_left_con">
+            <b></b>
+            <!-- 二级菜单 -->
+            <div class="zy_twonav">
+                <h2 class="tit"><%- navList[lv1] %></h2>
+                <ul>
+                    <% for(var i = 0; i < list[lv1].length; i++) {%>
+                    <% if(i == lv2) { %>
+                    <li class="cur"><a href="list?lv1=<%- lv1 %>&lv2=<%-i%>"><%-list[lv1][i]%></a></li>
+                    <% }else{ %>
+                    <li><a href="list?lv1=<%- lv1 %>&lv2=<%-i%>"><%-list[lv1][i]%></a></li>
+                    <% } %>
+                    <% } %>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- 右边内容 -->
+        <div class="zy_right_con">
+            <!-- 当前位置 -->
+            <div class="zy_title fix">
+                <h2><%- list[lv1][lv2] %><i></i></h2>
+            </div>
+            <!-- 内容展示块-->
+            <div class="news_list zy_listbox">
+                <!-- 展示15条数据后出现分页 -->
+                <ul class="leftli">
+                    <!-- 没有三级菜单 -->
+                    <% if(lv3s == undefined ) {%>
+                    <% for(var i = 0; i < fileList.length; i++) {%>
+                    <% if(+new Date() + fileList[i].id < 86400000){%>
+                    <li><b>·</b>
+                        <a href="<%-fileList[i].url%>"><%-fileList[i].filename%></a><span><%-fileList[i].date%></span>
+                        <i class="red_news">[新]</i>
+                    </li>
+                    <% } else{%>
+
+                    <li><b>·</b>
+                        <a href="<%-fileList[i].url%>"><%-fileList[i].filename%></a><span><%-fileList[i].date%></span>
+                    </li>
+                    <% } %>
+                    <% } %>
+                    <% } else { %>
+                    <!-- 有三级菜单 -->
+                    <% for(var qq = 0; qq < lv3s.length ; qq++){ %>
+                    <li class="lv3li"><a class="lv3li_a"><%-lv3s[qq]%></a> </li>
+                    <ul>
+                        <% for(var i = 0; i < lv3List[qq].length; i++) {%>
+                        <% if(+new Date()%-lv3List[qq][i].id < 86400000){%>
+                        <li><b>·</b>
+                            <a
+                                href="<%-lv3List[qq][i].url%>"><%-lv3List[qq][i].filename%></a><span><%-lv3List[qq][i].date%></span>
+                            <i class="red_news">[新]</i>
+                        </li>
+                        <% } else{%>
+                        <li><b>·</b>
+                            <a
+                                href="<%-lv3List[qq][i].url%>"><%-lv3List[qq][i].filename%></a><span><%-lv3List[qq][i].date%></span>
+                        </li>
+                        <% } %>
+                        <% } %>
+                    </ul>
+                    <% } %>
+                    <% } %>
+                </ul>
+                <script>
+                    $(function () {
+                        //设置DIV的高度跟随屏幕变化而变化，类似于自适应
+                        // $(".").height(document.body.scrollHeight);
+                        //隐藏leftli下所有ul元素
+                        $(".leftli ul").hide();
+
+                        //bind()为.leftli li的li生成点击事件
+                        $(".leftli li").bind("click", function () {
+                            /**
+                            .netx("ul")获取同级的下一个ul元素
+                            slideToggle(300)展开/关闭当前被点击的ul元素，300为速度，除了可以是数字还可以"slow"、"normal"、"fast"
+                            siblings("ul")遍历所有的ul元素
+                            **/
+                            $(this).next("ul").slideToggle(300).siblings("ul").slideUp(300);
+                        })
+
+                    })
+                </script>
+                <!-- 通用分页 -->
+                <div class="fanye" style="text-align: left;">
+                    <a href="#">上一页</a>
+                    <div>
+                        <a href="#" class="current">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">...</a>
+                        <a href="#">10</a>
+                    </div>
+                    <a href="#">下一页</a>
+                    <p>
+                        <span>共20页</span>
+                        <span>转到第<input type="text" name="" value="2">页</span>
+                        <input type="submit" name="" value="确定">
+                    </p>
+                </div>
+                <!-- 通用分页end -->
+            </div>
+        </div>
+    </div>
+    <!-- zy_content end -->
+</div>
+<!-- 内容框end -->
+
+<%-include("./footer.ejs")%>

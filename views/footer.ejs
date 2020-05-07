@@ -1,0 +1,77 @@
+			<!-- 友情链接 -->
+			<div class="link_more fix">
+				<h3>【友情链接】</h3>
+				<div class="r" style=" width: 1100px;">
+					<select onchange=mbar(this) name="select">
+						<option>其他部门网站</option>
+						<option value=''>XXX</option>
+						<option value=''>XXX</option>
+					</select>
+
+					<select onchange=mbar(this) name="select">
+						<option>办公平台</option>
+						<option value=''>OA</option>
+					</select>
+
+					<select onchange=mbar(this) name="select">
+						<option>乱七八糟</option>
+						<option value='http://www.gzegn.gov.cn/'>1234</option>
+					</select>
+
+					<select onchange=mbar(this) name="select">
+						<option>1111</option>
+						<option value='http://www.gzegn.gov.cn/'>2222</option>
+					</select>
+				</div>
+
+				<script type="text/javascript">
+					function mbar(sobj) {
+						var docurl = sobj.options[sobj.selectedIndex].value;
+						if (docurl != "") {
+							open(docurl, '_blank');
+							sobj.selectedIndex = 0;
+							sobj.blur();
+						}
+					}
+				</script>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- 返回顶部 -->
+	<div class="side_box">
+		<ul>
+			<li class="sidetop">
+				<span></span>
+			</li>
+		</ul>
+	</div>
+
+	<!-- 底部 -->
+	<div class="footerbox bg">
+		<div class="wid_main fix">
+			<div class="l">
+				<!-- <a href="#"
+					target="blank" class="dib vm"><img src="images/logo_down.png" /></a> -->
+				<a style=" margin:10px auto; " href="#" target="blank"
+					class="dib vm"><img src="images/logo.png" ></a>
+			</div>
+			<div class="l txt">
+				<p>Copyright  2020  中车永济电机有限公司  All  Right  Reserved</p>
+				<a>技术支持：  运营管理部 陈江涛   chenjiangtao@yjemc.com</a>
+				<p>使用ie浏览器</a></p>
+			</div>
+			<ul class="r other fix">
+				<li><a href="http://oa.yjemc.com">公司主页</a></li>
+				<li><a href="/list?lv1=1&lv2=0">管理制度</a></li>
+				<li><a href="/list?lv1=1&lv2=1">模板下载</a></li>
+				<li><a href="newslist.html">联系方式</a></li>
+			</ul>
+
+		</div>
+	</div>
+
+</body>
+
+</html>

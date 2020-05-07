@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="国铁事业部" http-equiv="keywords">
+    <meta name="description" content="国铁事业部">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+
+
+    <title>国铁事业部</title>
+
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/children.css">
+
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/public.js"></script>
+
+
+</head>
+
+<body>
+    <!--头部-->
+    <div class="topbox bg">
+        <div class="wid_main fix">
+            <div class="logo l"><img src="images/logo.png" alt="logo" />
+                <img src="images/title.png" alt="logo" />
+            </div>
+            <!-- 搜索 -->
+
+            <div class="search_box r bora_5">
+                <form>
+                    <div>
+                        <input type="text" name="" placeholder="请输入关键词检索">
+                        <button type="submit"><img src="images/search.png"></button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- top end -->
+
+    <!-- 主体内容框 -->
+    <div class="contentbox wid_main bora_5">
+        <div class="content">
+
+            <!-- 导航栏部分 -->
+            <div class="top_nav bg-red bora_5 ">
+                <ul class="fix" id="nvnv">
+                    <li>
+                        <a href="/">首 页</a>
+                    </li>
+                    <% for(var i = 1; i < navList.length; i++) {%>
+                        <li class="navlv1">
+                            <a href="list?lv1=<%-i%>&lv2=0">
+                                <%-navList[i]%>
+                            </a>
+                            <ul class="navlv2">
+                                <% for(var j = 0; j < list[i].length; j++) {%>
+                                    <li>
+                                        <a href="list?lv1=<%-i%>&lv2=<%-j%>">
+                                            <%-list[i][j]%>
+                                        </a>
+                                    </li>
+                                    <% } %>
+                            </ul>
+                        </li>
+                        <% } %>
+                </ul>
+                <script>
+                </script>
+            </div>
+
+            <!-- 导航end -->

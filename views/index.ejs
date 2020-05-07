@@ -1,0 +1,405 @@
+﻿<%-include("./header.ejs")%>
+
+<!-- 需要添加的最新通知或公告滚动部分 -->
+<div class="gonggao bdb_d fix">
+	<div class="txtScroll-top l fix">
+		<div class="l tit"><img src="images/icon_notice.png"><b class="dib vm">信息公告：</b></div>
+		<div class="bd l">
+			<ul class="infoList">
+				<li><a href="news_xq.html">滚动播放的信息公告</a><span class="date">2019-07-05</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		jQuery(".txtScroll-top").slide({ titCell: ".hd ul", mainCell: ".bd ul", effect: "topLoop", autoPlay: true, vis: 1, interTime: 4000, });
+	</script>
+
+	<!-- 时间 -->
+	<div class="timebox fc r">
+		<script type="text/javascript" src="js/show_date.js"></script>
+	</div>
+</div>
+
+<!-- 重要新闻展示不滚动 -->
+<div class="gonggao important_news">
+	<div class="tit dib vm"><img src="images/icon_hot.png"><b class="dib vm">要闻动态</b></div>
+	<h1><a href="news_xq.html">国铁事业部第三次党员代表会顺利召开</a></h1>
+</div>
+
+<div class="conbox fix">
+	<!-- 轮播图 -->
+	<div class="news_banner l bora_5">
+		<div class="hd">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+		<div class="bd">
+			<ul>
+				<!--图片新闻 最多4-5个左右li -->
+				<li>
+					<img src="images/banner1.jpg" alt="" />
+					<!-- <h2></h2> -->
+				</li>
+				<li>
+					<img src="images/banner4.jpg" alt="" />
+				</li>
+				<li>
+					<img src="images/banner3.jpg" alt="" />
+				</li>
+			</ul>
+		</div>
+		<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+		<a class="prev" href="javascript:void(0)"></a>
+		<a class="next" href="javascript:void(0)"></a>
+
+		<script type="text/javascript">
+			jQuery(".news_banner").slide({ mainCell: ".bd ul", autoPlay: true, effect: "leftLoop", mouseOverStop: false, interTime: 5000, });
+		</script>
+	</div>
+
+	<!-- 部分主要入口 -->
+	<div class="about_enter r">
+		<ul class="fix">
+			<li><a href="http://oa.yjemc.com"><img src="images/icon_leader.png"><span>公司主页</span></a></li>
+			<li><a href="newslist.html"><img src="images/icon_jigou.png"><span>管理制度</span></a></li>
+			<li><a href="about_people.html"><img src="images/icon_people.png"><span>模板下载</span></a></li>
+			<li><a href="/admin"><img src="images/icon_order.png"><span>文件上传</span></a></li>
+		</ul>
+		<dl>
+			<dd><a href="contact.html"><img src="images/icon_alltel.png"><span>国铁事业部各办公室电话</span></a></dd>
+			<dd><a href="contact.html"><img src="images/icon_liucheng.png"><span>国铁事业部组织架构图</span></a></dd>
+		</dl>
+	</div>
+</div>
+
+<!-- 动态 -->
+<div class="conbox">
+	<div class="fix">
+
+		<div class="slideTxtBox l fix">
+			<div class="hd l">
+				<ul>
+					<% for(var i = 1; i < 4; i++) {%>
+					<li><a href="list?lv1=0&lv2=<%-i%>"><i><img
+									src="images/icon_news0<%-i%>.png"></i><b><%-list[0][i]%></b></a>
+					</li>
+					<% } %>
+				</ul>
+			</div>
+			<div class="r box">
+				<div class="bd">
+					<% for(var i = 1; i < 4; i++) {%>
+					<ul>
+						<!-- 每个ul最多展示8条数据 -->
+						<% for(var j = 0; j < indexlist[i].length; j++) {%>
+						<% if(+new Date() + indexlist[i][j].id < 86400000){%>
+
+						<li><a href="<%-indexlist[i][j].url%>"><%-indexlist[i][j].filename%><i
+									class="red_news">[新]</i></a><span style="color: red;"
+								class="date"><%-indexlist[i][j].date%></span></li>
+
+						</li>
+						<% } else{%>
+						<li><a href="<%-indexlist[i][j].url%>"><%-indexlist[i][j].filename%></a><span
+								class="date"><%-indexlist[i][j].date%></span></li>
+
+						<% } %>
+
+						<% } %>
+
+
+					</ul>
+					<% } %>
+				</div>
+			</div>
+			<script
+				type="text/javascript">jQuery(".slideTxtBox").slide({ effect: "leftLoop", delayTime: 500 });</script>
+		</div>
+
+		<!-- 招标公告 -->
+		<div class="tender r">
+			<div class="sy_title bdb_d ovh">
+				<h2 class="l"><img src="images/icon_zhaobiao.png"><b class="fc"><%-list[0][0]%></b></h2>
+				<a href="list?lv1=0&lv2=0" class="r">查看更多></a>
+			</div>
+			<ul>
+				<% for(var j = 0; j < indexlist[0].length; j++) {%>
+				<% if(+new Date() + indexlist[0][j].id < 86400000){%>
+
+				<li><a href="<%-indexlist[0][j].url%>"><b>·</b><span><%-indexlist[0][j].filename%></span><i
+							class="red_news">[新]</i></a></li>
+
+				</li>
+				<% } else{%>
+				<li><a href="<%-indexlist[0][j].url%>"><b>·</b><span><%-indexlist[0][j].filename%></span></a></li>
+				<% } %>
+				<% } %>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 专题轮播 -->
+	<div class="zhuanti_pic">
+		<div class="hd">
+			<!--轮播点 -->
+			<ul>
+				<li></li>
+
+			</ul>
+		</div>
+		<div class="bd">
+			<ul>
+				<!--专题图片轮播 -->
+				<li>
+					<a href="news_xq.html"><img src="images/中部ad.jpg" /></a>
+				</li>
+				<!-- <li>
+					<a href="news_xq.html"><img src="images/pic01.jpg" /></a>
+				</li> -->
+			</ul>
+		</div>
+		<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+		<a class="prev" href="javascript:void(0)"></a>
+		<a class="next" href="javascript:void(0)"></a>
+
+		<script type="text/javascript">
+			jQuery(".zhuanti_pic").slide({ mainCell: ".bd ul", autoPlay: true, effect: "fade", mouseOverStop: false, interTime: 3000, });
+		</script>
+	</div>
+</div>
+
+<!-- 精益管理 -->
+<div class="conbox">
+	<div class="public_list">
+		<div class="hd sy_title fix">
+			<h2 class="l"><img src="images/icon_gongshi.png"><b class="fc"><%- list[0][4] %> </b></h2>
+			<ul class="l">
+				<% for(var i = 0; i < lv3s[4].length; i++) {%>
+				<li><a href="list?lv1=0&lv2=4"><%-lv3s[4][i]%></a></li>
+				<% } %>
+			</ul>
+		</div>
+		<div class="bd">
+
+			<% for(var i = 0; i < lv3s[4].length; i++) {%>
+			<div>
+				<table class="table_list">
+					<tbody>
+						<% for(var j = 0; j < lv3List[4][i].length; j++) {%>
+						<% if(+new Date() + lv3List[4][i][j].id < 86400000){%>
+						<tr>
+							<td class="item">
+								<a href="<%-lv3List[4][i][j].url%>"><%-lv3List[4][i][j].filename%>
+									<i class="red_news">[新]</i></a>
+							</td>
+							<td class="item01">
+								<span style="color: red;" class="date"><%-lv3List[4][i][j].date%></span>
+							</td>
+						</tr>
+						<% } else{%>
+						<tr>
+
+							<td class="item">
+								<a href="<%-lv3List[4][i][j].url%>"><%-lv3List[4][i][j].filename%></a>
+							</td>
+
+							<td class="item01">
+								<span class="date"><%-lv3List[4][i][j].date%></span>
+							</td>
+						</tr>
+						<% } %>
+
+						<% } %>
+
+					</tbody>
+				</table>
+			</div>
+			<% } %>
+
+
+
+		</div>
+	</div>
+	<div class="public_list">
+		<div class="hd sy_title fix">
+			<h2 class="l"><img src="images/icon_gongshi.png"><b class="fc"><%- list[0][5] %> </b></h2>
+			<ul class="l">
+				<% for(var i = 0; i < lv3s[5].length; i++) {%>
+				<li><a href="list?lv1=0&lv2=5"><%-lv3s[5][i]%></a></li>
+				<% } %>
+
+			</ul>
+		</div>
+		<div class="bd">
+
+			<% for(var i = 0; i < lv3s[5].length; i++) {%>
+			<div>
+				<table class="table_list">
+					<tbody>
+						<% for(var j = 0; j < lv3List[5][i].length; j++) {%>
+						<% if(+new Date() + lv3List[5][i][j].id < 86400000){%>
+						<tr>
+							<td class="item">
+								<a href="<%-lv3List[5][i][j].url%>"><%-lv3List[5][i][j].filename%>
+									<i class="red_news">[新]</i></a>
+							</td>
+							<td class="item01">
+								<span style="color: red;" class="date"><%-lv3List[5][i][j].date%></span>
+							</td>
+						</tr>
+						<% } else{%>
+						<tr>
+
+							<td class="item">
+								<a href="<%-lv3List[5][i][j].url%>"><%-lv3List[5][i][j].filename%></a>
+							</td>
+
+							<td class="item01">
+								<span class="date"><%-lv3List[5][i][j].date%></span>
+							</td>
+						</tr>
+						<% } %>
+
+						<% } %>
+
+					</tbody>
+				</table>
+			</div>
+			<% } %>
+
+
+
+		</div>
+	</div>
+	<script type="text/javascript">jQuery(".public_list").slide();</script>
+</div>
+<div class="conbox">
+	<div class="public_list">
+		<div class="hd sy_title fix">
+			<h2 class="l"><img src="images/icon_gongshi.png"><b class="fc"><%- list[0][6] %> </b></h2>
+			<ul class="l">
+				<% for(var i = 0; i < lv3s[6].length; i++) {%>
+				<li><a href="list?lv1=0&lv2=6"><%-lv3s[6][i]%></a></li>
+				<% } %>
+			</ul>
+		</div>
+		<div class="bd">
+
+			<% for(var i = 0; i < lv3s[6].length; i++) {%>
+			<div>
+				<table class="table_list">
+					<tbody>
+						<% for(var j = 0; j < lv3List[6][i].length; j++) {%>
+						<% if(+new Date() + lv3List[6][i][j].id < 86400000){%>
+						<tr>
+							<td class="item">
+								<a href="<%-lv3List[6][i][j].url%>"><%-lv3List[6][i][j].filename%>
+									<i class="red_news">[新]</i></a>
+							</td>
+							<td class="item01">
+								<span style="color: red;" class="date"><%-lv3List[6][i][j].date%></span>
+							</td>
+						</tr>
+						<% } else{%>
+						<tr>
+
+							<td class="item">
+								<a href="<%-lv3List[6][i][j].url%>"><%-lv3List[6][i][j].filename%></a>
+							</td>
+
+							<td class="item01">
+								<span class="date"><%-lv3List[6][i][j].date%></span>
+							</td>
+						</tr>
+						<% } %>
+
+						<% } %>
+
+					</tbody>
+				</table>
+			</div>
+			<% } %>
+
+
+
+		</div>
+	</div>
+	<div class="public_list">
+		<div class="hd sy_title fix">
+			<h2 class="l"><img src="images/icon_gongshi.png"><b class="fc"><%- list[0][7] %> </b></h2>
+			<ul class="l">
+				<% for(var i = 0; i < lv3s[7].length; i++) {%>
+				<li><a href="list?lv1=0&lv2=7"><%-lv3s[7][i]%></a></li>
+				<% } %>
+
+			</ul>
+		</div>
+		<div class="bd">
+
+			<% for(var i = 0; i < lv3s[7].length; i++) {%>
+			<div>
+				<table class="table_list">
+					<tbody>
+						<% for(var j = 0; j < lv3List[7][i].length; j++) {%>
+						<% if(+new Date() + lv3List[7][i][j].id < 86400000){%>
+						<tr>
+							<td class="item">
+								<a href="<%-lv3List[7][i][j].url%>"><%-lv3List[7][i][j].filename%>
+									<i class="red_news">[新]</i></a>
+							</td>
+							<td class="item01">
+								<span style="color: red;" class="date"><%-lv3List[7][i][j].date%></span>
+							</td>
+						</tr>
+						<% } else{%>
+						<tr>
+
+							<td class="item">
+								<a href="<%-lv3List[7][i][j].url%>"><%-lv3List[7][i][j].filename%></a>
+							</td>
+
+							<td class="item01">
+								<span class="date"><%-lv3List[7][i][j].date%></span>
+							</td>
+						</tr>
+						<% } %>
+
+						<% } %>
+
+					</tbody>
+				</table>
+			</div>
+			<% } %>
+
+
+
+		</div>
+	</div>
+	<script type="text/javascript">jQuery(".public_list").slide();</script>
+</div>
+
+<script type="text/javascript">
+
+	$(function () {
+		$(".public_list .sy_title .more01 a").first().show();
+		$(".public_list .sy_title ul li").mouseover(function () {
+			var n = $(this).index();
+			$(".public_list .sy_title .more01 a").hide().eq(n).show();
+		})
+
+		$(".open_list .sy_title .more a").first().show();
+		$(".open_list .sy_title ul li").mouseover(function () {
+			var n = $(this).index();
+			$(".open_list .sy_title .more a").hide().eq(n).show();
+		})
+
+	})
+
+
+</script>
+
+<%-include("./footer.ejs")%>

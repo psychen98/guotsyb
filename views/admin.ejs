@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国铁事业部-文件上传</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/admin.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="title">
+            <h1>国铁事业部-文件上传</h1>
+        </div>
+        <form class="upform" name="uploadForm" action="/upload" method="POST" enctype="multipart/form-data"
+            onsubmit="return check()">
+
+            <select name="lv1" id="lv1" onchange="set_lv2(this,this.form.lv2,this.form.lv3)">
+                <option value="0">选择一级目录</option>
+                <% for(var i = 0; i < navList.length; i++) {%>
+                <option value="<%-navList[i]%>"><%-navList[i]%></option>
+                <% } %>
+            </select>
+            <select name="lv2" id="lv2" onchange="set_lv3(this,this.form.lv3)">
+                <option value="0">选择二级目录</option>
+            </select>
+
+            <select name="lv3" id="lv3">
+                <option value="0">选择三级目录</option>
+            </select>
+            <br>
+            <input class="upfile" type="file" name="sampleFile" id="ufile" multiple /><br>
+            <br>
+            <input class="filesub" type='submit' value='上传' />
+        </form>
+    </div>
+</body>
+
+</html>
